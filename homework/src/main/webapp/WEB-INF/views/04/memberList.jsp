@@ -58,7 +58,6 @@
         </div>
     </div>
     
-    
 <script>
 	contextPath = '<%=request.getContextPath()%>'
 	function showModal(id) {

@@ -13,6 +13,10 @@ public class Test {
 	public static void main(String[] args) throws IOException, IOException {
 		ClassLoader classLoader = Test.class.getClassLoader();
 	    File f = new File(classLoader.getResource("kr/or/ddit/MemberData.properties").getFile());
+	    
+	    File d = new File("homework/src/main/resources/kr/or/ddit/MemberData.properties");
+	    System.out.println(d.getAbsolutePath());
+	    System.out.println(System.getProperty("user.dir"));
 		try(
 			FileReader fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
@@ -26,7 +30,7 @@ public class Test {
 			String[] id = {};
 			String[] info = {};
 			while((line = br.readLine())!=null) {
-				System.out.println(line);
+//				System.out.println(line);
 				id = (line.split("="));
 				String iid = id[0];
 				idList.add(id[0]);
@@ -39,12 +43,10 @@ public class Test {
 			System.out.println("나이 : " +memberInfo[2]);
 			System.out.println("주소 : "+memberInfo[3]);
 			for(String str : idList) {
-				System.out.println("id : " + str);
-				
+//				System.out.println("id : " + str);
 			}
 			
-			
+			}
 		}
 	}
 	
-}
