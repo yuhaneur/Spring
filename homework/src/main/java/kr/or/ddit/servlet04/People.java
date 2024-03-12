@@ -19,7 +19,7 @@ public class People extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ClassLoader classLoader = Test.class.getClassLoader();
+		ClassLoader classLoader = getClass().getClassLoader();
 		System.out.println("멤버 정보 서블릿");
 	    File f = new File(classLoader.getResource("kr/or/ddit/MemberData.properties").getFile());
 		try(
