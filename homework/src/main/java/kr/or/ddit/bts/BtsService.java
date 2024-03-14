@@ -1,6 +1,7 @@
 package kr.or.ddit.bts;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class BtsService {
 	private BtsDao dao;
@@ -14,7 +15,10 @@ public class BtsService {
 		return service;
 	}
 	
-	public boolean check(String name) {
+	public boolean check(String name) throws IllegalArgumentException{
+		Optional.ofNullable(name)
+		.filter(nm->!nm.isEmpty())
+		.orElseThrow(()->new IllegalArgumentException("정확한 선택해주세요"));
 		return dao.check(name);
 	}
 	
