@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/bts")
+@WebServlet(loadOnStartup = 1,value="/bts")
 public class BtsServlet extends HttpServlet{
 	private BtsService service;
 	private ServletContext application;
@@ -20,29 +20,13 @@ public class BtsServlet extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		service = BtsService.getInstence();
-		application = config.getServletContext();
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		map = service.btsList();
-		System.out.println(map.size());
 		application.setAttribute("btsMap", map);
 		
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/bts/btsView.jsp").forward(req, resp);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String name = req.getParameter("type");
-		boolean check;
-		try {
-			check = service.check(name);
-			System.out.println("있냐 ?" +check);
-			String path = String.format("/WEB-INF/views/bts/%s.jsp",name);
-			
-		}catch(RuntimeException e) {
-			resp.sendError(400,e.getMessage());
-		}
+		req.getRequestDispatcher("/webapp/bts/btsView.jsp").forward(req, resp);
 	}
 }
