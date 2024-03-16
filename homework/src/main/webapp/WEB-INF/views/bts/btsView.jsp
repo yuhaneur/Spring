@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form id="bts-form" method="post" name="frm">
+<form action="<%=request.getContextPath() %>/bts" id="bts-form" method="post" name="frm">
         <select name="type" onchange="this.form.requestSubmit()">
 		<%for(String key : btsMap.keySet()){
 		%>

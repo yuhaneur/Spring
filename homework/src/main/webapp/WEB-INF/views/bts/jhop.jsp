@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 	<div class="people_info section _people_info people_spc"
 		id="people_info_z" data-dss-logarea="x29">
 		<div class="section_head">
@@ -522,5 +515,3 @@
 			}
 		</script>
 	</div>
-</body>
-</html>

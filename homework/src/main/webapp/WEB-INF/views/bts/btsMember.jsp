@@ -5,12 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/WEB-INF/inculdee/preScript.jsp"></jsp:include>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/views/bts/title.jsp"></jsp:include>
 <%
-	String content = (String)request.getAttribute("content");
+	String path = (String)request.getAttribute("path");
 %>
-<jsp:include page="<%=content %>"></jsp:include>
+<jsp:include page="<%=path %>"></jsp:include>
 </body>
+<jsp:include page="/WEB-INF/inculdee/postScript.jsp"></jsp:include>
 </html>

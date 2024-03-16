@@ -40,7 +40,8 @@ public class BtsServlet extends HttpServlet{
 			check = service.check(name);
 			System.out.println("있냐 ?" +check);
 			String path = String.format("/WEB-INF/views/bts/%s.jsp",name);
-			
+			req.setAttribute("path", path);
+			req.getRequestDispatcher("/WEB-INF/views/bts/btsMember.jsp").forward(req, resp);
 		}catch(RuntimeException e) {
 			resp.sendError(400,e.getMessage());
 		}
