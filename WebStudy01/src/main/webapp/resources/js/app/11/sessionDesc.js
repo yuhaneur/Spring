@@ -19,8 +19,13 @@ class SessionTimer2 {
             <button class="control" data-ts-state="true">예</button>
             <button class="control">아니요</button>
             </div>
+			<div>두번째 div </div>
          `;
       this.msgArea = new DOMParser().parseFromString(source, 'text/html').body.children[0]; //새로운 DOM객체가 만들어짐
+      this.msgArea1 = new DOMParser().parseFromString(source, 'text/html').body.children[1]; //새로운 DOM객체가 만들어짐
+		console.log("this.msgArea",this.msgArea)
+		console.log("this.msgArea1",this.msgArea1)
+		
       this.msgArea.addEventListener("click", function(e) {
          if (e.target.dataset.tsState) {
             this.reset();
