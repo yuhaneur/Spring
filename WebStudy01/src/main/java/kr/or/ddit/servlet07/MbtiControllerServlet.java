@@ -1,19 +1,21 @@
 package kr.or.ddit.servlet07;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
-
+import java.util.Optional;import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.exception.ResponseStatusException;
+import kr.or.ddit.utils.CookieMapRequestWrapper;
 
 @WebServlet(loadOnStartup = 1,value = "/09/mbti")
 public class MbtiControllerServlet extends HttpServlet{
@@ -46,7 +48,10 @@ public class MbtiControllerServlet extends HttpServlet{
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String result = new CookieMapRequestWrapper(req).getCookieValue("type");
 		
+		req.setAttribute("result", result);
+		System.out.println("result"+result);
 		String path = "/WEB-INF/views/mbti/mbtiForm.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
@@ -67,6 +72,10 @@ public class MbtiControllerServlet extends HttpServlet{
 			req.setAttribute("content", content);
 			String path = "/WEB-INF/views/mbti/base.jsp";
 			
+			Cookie cookie = new Cookie("type", type);
+			cookie.setPath(req.getContextPath());
+			cookie.setMaxAge(80000);
+			resp.addCookie(cookie);
 			req.getRequestDispatcher(path).forward(req, resp);
 			
 		} catch (ResponseStatusException e) {

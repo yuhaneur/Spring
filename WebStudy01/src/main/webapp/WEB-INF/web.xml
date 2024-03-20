@@ -7,6 +7,14 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	<context-param>
+		<param-name>param1</param-name>
+		<param-value>value1</param-value>
+	</context-param>
+	<context-param>
+		<param-name>imageFolder</param-name>
+		<param-value>D:/00.medias/images</param-value>
+	</context-param>
 	<servlet>
 		<servlet-name>MimeTextDesc</servlet-name>
 		<servlet-class>kr.or.ddit.servlet02.MimeTextDescServlet</servlet-class>
@@ -21,7 +29,27 @@
 		<url-pattern>/mime</url-pattern>
 	</servlet-mapping>
 	<session-config>
-		<tracking-mode>COOKIE</tracking-mode>
 		<session-timeout>2</session-timeout>
+		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login/loginForm.jsp</form-login-page>
+			<form-error-page>/login/loginForm.jsp</form-error-page>
+		</form-login-config>
+	</login-config>
+<!-- 	<security-constraint> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>MBTI</web-resource-name> -->
+<!-- 			<url-pattern>/09/mbti</url-pattern> -->
+<!-- 			<http-method>GET</http-method> 메소드 요청 막겠다 -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<auth-constraint> -->
+<!-- 			<role-name>ROLE_ADMIN</role-name> 관리자만 사용가능 -->
+<!-- 		</auth-constraint> -->
+<!-- 		<user-data-constraint> -->
+<!-- 			<transport-guarantee>CONFIDENTIAL</transport-guarantee> HTTPS를 써서 암호화 하겠다. -->
+<!-- 		</user-data-constraint> -->
+<!-- 	</security-constraint> -->
 </web-app>

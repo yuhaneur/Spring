@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(loadOnStartup = 1,value="/bts")
+@WebServlet(loadOnStartup = 1,value="/bts2")
 public class BtsServlet extends HttpServlet{
 	private BtsService service;
 	private ServletContext application;
@@ -22,7 +22,7 @@ public class BtsServlet extends HttpServlet{
 		service = BtsService.getInstence();
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		map = service.btsList();
-		application.setAttribute("btsMap", map);
+//		application.setAttribute("btsMap", map);
 		
 	}
 	@Override

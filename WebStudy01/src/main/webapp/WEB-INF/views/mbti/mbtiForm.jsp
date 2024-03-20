@@ -1,3 +1,4 @@
+<%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="java.util.Map.Entry"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Map.Entry"%>
@@ -11,6 +12,20 @@ pageEncoding="UTF-8"%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBTI</title>
 </head>
+<%
+String result = (String)request.getAttribute("result"); 
+if(StringUtils.isNotBlank(result)){
+%>
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded",()=>{
+		window['mbti-form'].type.value="<%=result%>";
+		document.forms[0].requestSubmit();
+	});
+</script>
+<%
+}
+%>
+
 <body>
     <form id="mbti-form" method="post" name="frm">
         <select name="type" onchange="this.form.requestSubmit()">
