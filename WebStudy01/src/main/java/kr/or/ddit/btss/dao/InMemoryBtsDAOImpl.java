@@ -1,6 +1,7 @@
 package kr.or.ddit.btss.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,17 +43,23 @@ public class InMemoryBtsDAOImpl implements BtsDAO {
 			vo.setCount((Integer) entry.getValue()[2]);
 			list.add(vo);
 		}
+		Collections.sort(list);
 		return list;
 	}
 
 	@Override
 	public void incrementHit(String code) {
-		if(btsMap.containsKey(code)) {
-			Object[] oj = btsMap.get(code);
-			int hit = (int) oj[2];
-			oj[2] = ++hit;
-			
+		BtsVO bts = selectBts(code);
+		if(bts!=null) {
+			int count = bts.getCount() + 1;
+			btsMap.get(bts)[2] = count;
 		}
+		
+//		if(btsMap.containsKey(code)) {
+//			Object[] oj = btsMap.get(code);
+//			int hit = (int) oj[2];
+//			oj[2] = ++hit;
+//		}
 	}
 
 }

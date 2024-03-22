@@ -3,6 +3,7 @@ package kr.or.ddit.vo;
 import java.io.Serializable;
 
 /**
+ *  <자바 빈 규약>
  * VO(Value Object), DTO(dtata Transfer,object),Model,Bean
  *	1. 값을 저장할 수 있는 프로퍼티.
  *	2. 갭슐화
@@ -12,7 +13,7 @@ import java.io.Serializable;
  *	5. 상태 확인방법 제공.
  *	6. 직렬화 기능.
  */
-public class BtsVO implements Serializable{
+public class BtsVO implements Serializable, Comparable<BtsVO>{
 	private String code;
 	private String name;
 	private transient String path;
@@ -88,6 +89,15 @@ public class BtsVO implements Serializable{
 		} else if (!path.equals(other.path))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "BtsVO [code=" + code + ", name=" + name + ", path=" + path + ", count=" + count + "]";
+	}
+	@Override
+	public int compareTo(BtsVO o) {
+		
+		return -(this.count - o.getCount());
 	}
 	
 	
