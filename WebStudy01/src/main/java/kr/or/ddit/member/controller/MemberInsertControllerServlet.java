@@ -59,7 +59,7 @@ public class MemberInsertControllerServlet extends HttpServlet{
 //		 * 2. 검증 
 		Map<String, String> errors = new LinkedHashMap<>();
 		req.setAttribute("errors", errors);
-		boolean valid =  validate(member,errors);
+		boolean valid =  validate(member,errors); // 콜바이 레퍼런스 방식
 		String viewName = null;
 		if(errors.isEmpty()) {
 //		 * 3. 로직 사용(model 확보)
