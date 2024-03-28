@@ -44,7 +44,7 @@
 		be.addEventListener("click",(e)=>{
 			console.log("click bubbling to ",be.id, " target : ",e.target.id);
 			//e.preventDefault();
-// 			e.stopPropagation(); // 이벤트 전파 막는함수
+			e.stopPropagation(); // 이벤트 전파 막는함수
 		});
 		be.addEventListener("focus",(e)=>{
 			console.log("focus bubbling to ",be.id, " target : ",e.target.id);
@@ -55,7 +55,7 @@
 	document.querySelectorAll(".capturing").forEach((ce)=>{
 		ce.addEventListener("click",(e)=>{
 			console.log("click capturing from ",ce.id, " target : ",e.target.id);
-// 			e.stopPropagation();
+			e.stopPropagation();
 		},true);
 		ce.addEventListener("focus",(e)=>{
 			console.log("click capturing from ",ce.id, " target : ",e.target.id);
