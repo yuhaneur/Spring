@@ -99,7 +99,7 @@ $(function(){ //1) $(document).on("ready", function()  2) $(document).ready(func
 					let propName = td.id;
 					td.innerHTML = member[propName];//리터럴을 통해 프로퍼티 값을 가져오려면 연산배열구조가 필요함
 				});
-				$updateBtn.data("who",member.memId);
+//				$updateBtn.data("who",member.memId);
 				
 				
 				//?? : null 병합 연산자. (삼항연산자와 비슷)
@@ -110,7 +110,7 @@ $(function(){ //1) $(document).on("ready", function()  2) $(document).ready(func
 		
 	}).on("hidden.bs.modal",function(event){
 		$modal.find("td[id]").html("");
-		$updateBtn.removeData("who");
+//		$updateBtn.removeData("who");
 	})
 	
 //새로입력받은 회원 모달창 띄우기 javascript 만들기

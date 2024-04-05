@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.mvc.ViewResolverComposite;
+
 @WebServlet("/login/logout.do")
 public class LogoutControllerServlet extends HttpServlet {
 	//1.request콜백을 doPost로 넣기 - JSP내에서 a태그X form을 만들어 hidden태그로 만들기
@@ -35,12 +37,7 @@ public class LogoutControllerServlet extends HttpServlet {
 		String viewName ="redirect:/?message="+message;
 		
 //		 * 6. view로 이동(flow control)
-			if(viewName.startsWith("redirect:")) { 
-				String location = viewName.replace("redirect:", req.getContextPath()); //prefix 이 규칙은 나중에 Spring에서 그대로 사용됨!!!!
-				resp.sendRedirect(location);
-			}else {
-				req.getRequestDispatcher(viewName).forward(req, resp);
-			}
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 			
 		
 	}

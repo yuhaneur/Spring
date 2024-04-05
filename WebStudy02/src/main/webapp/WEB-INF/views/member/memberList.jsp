@@ -1,19 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="/WEB-INF/includee/preScript.jsp"/>
 <style type="text/css">
 	tr[data-mem-id]{
 		cursor: pointer;
 	}
 </style>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body data-context-path="${pageContext.request.contextPath}" data-new-mem-id=${request.memId }>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -139,6 +131,3 @@
 
 </table>
 <script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>
-<jsp:include page="/WEB-INF/includee/postScript.jsp"/>
-</body>
-</html>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.prod.service.ProdService;
 import kr.or.ddit.prod.service.ProdServiceImpl;
 import kr.or.ddit.vo.ProdVO;
@@ -26,6 +27,7 @@ public class ProdListControllerServlet extends HttpServlet{
 		String accept = req.getHeader("accept");
 		
 		//flow Control
-		req.getRequestDispatcher("/WEB-INF/views/prod/prodList.jsp").forward(req, resp);
+		String viewName = "prod/prodList";
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
 }

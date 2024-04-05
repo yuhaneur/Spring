@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,10 +49,10 @@ public class MemberListControllerServlet extends HttpServlet {
 		if(accept.contains("json")) { //list객체를 json으로 마샬링 하는 작업
 			viewName = "/jsonView.do";
 		}else {
-			viewName = "/WEB-INF/views/member/memberList.jsp";
+			viewName = "member/memberList";
 		}
 		//flow control
-		req.getRequestDispatcher(viewName).forward(req, resp);
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 	}
 
 }

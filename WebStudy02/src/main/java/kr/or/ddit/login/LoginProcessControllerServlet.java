@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import kr.or.ddit.exception.ResponseStatusException;
 import kr.or.ddit.login.service.AuthenticateSerivce;
 import kr.or.ddit.login.service.AuthenticateSerivceImpl;
+import kr.or.ddit.mvc.ViewResolverComposite;
 import kr.or.ddit.vo.MemberVO;
 
 @WebServlet("/login/loginProcess.do")
@@ -54,6 +55,7 @@ public class LoginProcessControllerServlet extends HttpServlet {
 			MemberVO authMember = service.authenticate(inputData);
 //			인증된 사용자임을 증명하는 상태정보 생성 및 유지
 			session.setAttribute("authMember", authMember);
+			
 //		- 성공 : 웰컴 페이지로 이동 - redirect
 			viewName = "redirect:/";
 		}catch (AuthenticateException e) {
@@ -65,12 +67,7 @@ public class LoginProcessControllerServlet extends HttpServlet {
 		}
 		
 //		 * 6. view로 이동(flow control)
-			if(viewName.startsWith("redirect:")) { 
-				String location = viewName.replace("redirect:", req.getContextPath()); //prefix 이 규칙은 나중에 Spring에서 그대로 사용됨!!!!
-				resp.sendRedirect(location);
-			}else {
-				req.getRequestDispatcher(viewName).forward(req, resp);
-			}
+		new ViewResolverComposite().resolveView(viewName, req, resp);
 			
 		
 		}catch (ResponseStatusException e) {

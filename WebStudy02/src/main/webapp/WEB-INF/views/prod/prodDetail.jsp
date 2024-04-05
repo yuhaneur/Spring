@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="/WEB-INF/includee/preScript.jsp"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 <table class="table table-bordered table-striped">
 	<tr>
 		<th>상품명</th>
@@ -120,7 +112,11 @@
 			<th>마일리지</th>
 			<td>${prod.prodMileage}</td>
 		</tr>
-		
+		<tr>
+			<td colspan="2">
+				<input data-prod-id="${prod.prodId}" onclick="update(this)" type="button" value="상품수정">
+			</td>
+		</tr>
 		<tr>
 		<th>구매자 정보</th>
 		<td>
@@ -150,9 +146,13 @@
 			</table>
 		</td>
 	</tr>
-	
 	</table>
-<script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>
-<jsp:include page="/WEB-INF/includee/postScript.jsp"/>
-</body>
-</html>
+	<script type="text/javascript">
+		const cPath = $('body').data("contextPath");
+		console.log("cPath",cPath);
+		function update(e){
+			let prodId = $(e).data("prodId");
+			console.log("prodId",prodId);
+			location.href=`\${cPath}/prod/prodUpdate.do?what=\${prodId}`
+		}
+	</script>
