@@ -22,11 +22,14 @@ public class Case7Playground {
 				new ClassPathXmlApplicationContext("kr/or/ddit/case1/conf/Sample-Context.xml");
 		ConfigurableApplicationContext child1 =
 				new ClassPathXmlApplicationContext(
-						new String[] {"kr/or/ddit/case2/conf/Case2-Context.xml"}, parent);
-		ConfigurableApplicationContext child2 =
-				new ClassPathXmlApplicationContext(
-						new String[] {"kr/or/ddit/case4/conf/Case4-Context.xml"},
-						parent);
+						new String[] {"kr/or/ddit/case2/conf/Case2-Context.xml","kr/or/ddit/case4/conf/Case4-Context.xml"}, parent);
+//		ConfigurableApplicationContext child2 =
+//				new ClassPathXmlApplicationContext(
+//						new String[] {"kr/or/ddit/case4/conf/Case4-Context.xml"},
+//						parent);
+		
+//		ConfigurableApplicationContext aa= 
+//				new ClassPathXmlApplicationContext()
 		Foo foo =  child1.getBean("foo1",Foo.class);
 		log.info("foo : {}",foo);
 		
@@ -34,13 +37,14 @@ public class Case7Playground {
 		log.info("부모로부터 자식에게 주입된 dao : {}", dao);
 		
 //		parent.getBean(Bar.class); 부모 컨테이너에서 자식의 빈을 주입받을 수 없음.
-		child1.getBean(Bar.class);
+		Bar bb=  child1.getBean(Bar.class);
 		parent.getBean(SampleDAO.class);
 		
-		child1.getBean(SampleDAO.class);
-		child2.getBean(SampleDAO.class);
+		SampleDAO sam = child1.getBean(SampleDAO.class);
+//		child2.getBean(SampleDAO.class);
 		
-//		child1.getBean(BtsDAO.class);
-		child2.getBean(Foo.class);
+		BtsDAO bts =  child1.getBean(BtsDAO.class);
+//		child2.getBean(Foo.class);
+		log.info("Bar : {} , Sample : {} , Bts : {}", bb,sam,bts);
 	}
 }

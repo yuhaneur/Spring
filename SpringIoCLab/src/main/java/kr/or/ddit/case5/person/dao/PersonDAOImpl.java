@@ -28,7 +28,13 @@ public class PersonDAOImpl implements PersonDAO {
 	public void setFsRes(Resource fsRes) {
 		this.fsRes = fsRes;
 	}
-	
+	@Value("classpath:kr/or/ddit/db/Dbinfo.properties")
+	private Resource dbinfo ;
+	@Value("#{user}")
+	private String user;
+	public void setUser(String user) {
+		this.user = user;
+	}
 	@PostConstruct
 	public void init() {
 //		try(
@@ -36,7 +42,9 @@ public class PersonDAOImpl implements PersonDAO {
 //		){
 //			props.load(is);
 //			log.info("주입된 리소스 : {}", cpRes);
-			log.info("주입된 리소스 : {}", fsRes);
+//			log.info("주입된 리소스 : {}", fsRes);
+			log.info("dbinfo 리소스 : {}", dbinfo);
+			log.info("user 값 : {}", user);
 //		}catch (IOException e) {
 //			throw new UncheckedIOException(e);
 //		}
