@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd"
+	default-init-method="init"	
+		>
+
+<!-- 	BTS 멤버 전원을 조회하고, 해당 정보를 콘솔에 출력 -->
+	<bean id="btsVO" class="kr.or.ddit.vo.BtsVO" scope="prototype"/>
+	
+	<util:map id="map" key-type="String" value-type="java.lang.Object[]"></util:map>
+<!-- 	<bean class="java.util.LinkedHashMap" id="map"></bean> -->
+	<bean id="btsDAO" class="kr.or.ddit.case4.btss.dao.InMemoryBtsDAOImpl"
+		p:btsMap-ref="map"
+	/>
+	<bean id="btsService" class="kr.or.ddit.case4.btss.service.BtsServiceImpl"
+		c:dao-ref="btsDAO"
+	/>
+	<bean id="case4Playground" class="kr.or.ddit.case4.btss.Case4Playground"
+		p:service-ref="btsService"
+	/>
+</beans>
