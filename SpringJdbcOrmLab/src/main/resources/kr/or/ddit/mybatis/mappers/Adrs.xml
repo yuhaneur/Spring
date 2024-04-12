@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.adrs.dao.AdrsDao">
+	<select id="selectAdrsList" resultSets="AdrsVO">
+		SELECT A.ADRS_NO,A.MEM_ID,A.ADRS_NAME,A.ADRS_TEL,A.ADRS_ADD ,B.* 
+		FROM ADDRESSBOOK A INNER JOIN MEMBER B ON(A.MEM_ID=B.MEM_ID)
+	</select>
+	
+	<select id="selectAdrs" parameterType="int" resultSets="AdrsVO">
+		SELECT A.ADRS_NO,A.MEM_ID,A.ADRS_NAME,A.ADRS_TEL,A.ADRS_ADD ,B.* 
+		FROM ADDRESSBOOK A INNER JOIN MEMBER B ON(A.MEM_ID=B.MEM_ID)
+		WHERE ADRS_NO=#{adrsNo}
+	</select>
+	
+	<insert id="insertAdrs">
+	<selectKey order="BEFORE" keyProperty="adrsNo" resultType="int">
+		SELECT NVL(MAX(ADRS_NO),0) + 1
+		FROM ADDRESSBOOK
+	</selectKey>
+		INSERT INTO 
+			ADDRESSBOOK(ADRS_NO,MEM_ID,ADRS_NAME,ADRS_TEL,ADRS_ADD) 
+				VALUES(#{adrsNo},#{memId},#{adrsName},#{adrsTel},#{adrsAdd})
+	</insert>
+</mapper>
