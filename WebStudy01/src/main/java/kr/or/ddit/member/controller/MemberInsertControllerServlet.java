@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
-import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.hr.vo.MemberVO;
 
 
 /**

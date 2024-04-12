@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.ddit.exception.PkNotFoundException;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
-import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.hr.vo.MemberVO;
 
 @WebServlet("/member/memberDetail.do")
 public class MemberDetailControllerServlet extends HttpServlet{

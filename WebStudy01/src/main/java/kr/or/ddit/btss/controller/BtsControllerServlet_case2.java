@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import kr.or.ddit.btss.service.BtsService;
 import kr.or.ddit.btss.service.BtsServiceImpl;
 import kr.or.ddit.exception.PkNotFoundException;
-import kr.or.ddit.vo.BtsVO;
+import kr.or.ddit.hr.vo.BtsVO;
 
 @WebServlet("/case2/bts")
 public class BtsControllerServlet_case2 extends HttpServlet{

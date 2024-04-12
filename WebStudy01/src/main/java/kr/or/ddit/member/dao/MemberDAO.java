@@ -2,7 +2,7 @@ package kr.or.ddit.member.dao;
 
 import java.util.List;
 
-import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.hr.vo.MemberVO;
 
 /**
  * 회원 관리(CRUD)를 위한 Persistence Layer

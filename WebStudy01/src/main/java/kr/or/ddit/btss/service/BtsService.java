@@ -3,7 +3,7 @@ package kr.or.ddit.btss.service;
 import java.util.List;
 
 import kr.or.ddit.exception.PkNotFoundException;
-import kr.or.ddit.vo.BtsVO;
+import kr.or.ddit.hr.vo.BtsVO;
 
 /**
  * Business Logic Layer

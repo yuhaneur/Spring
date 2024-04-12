@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import kr.or.ddit.vo.BtsVO;
+import kr.or.ddit.hr.vo.BtsVO;
 
 class BtsDaoTest {
 	BtsDAO dao = new InMemoryBtsDAOImpl();

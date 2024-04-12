@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import kr.or.ddit.vo.BtsVO;
+import kr.or.ddit.hr.vo.BtsVO;
 
 public class InMemoryBtsDAOImpl implements BtsDAO {
 	Map<String, Object[]> btsMap = new LinkedHashMap();

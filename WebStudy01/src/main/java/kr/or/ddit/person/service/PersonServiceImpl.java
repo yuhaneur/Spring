@@ -5,7 +5,7 @@ import java.util.List;
 import kr.or.ddit.person.dao.PersonDAO;
 import kr.or.ddit.person.dao.PersonDAOImpl;
 import kr.or.ddit.person.exception.PersonNotFoundException;
-import kr.or.ddit.vo.PersonVO;
+import kr.or.ddit.hr.vo.PersonVO;
 
 public class PersonServiceImpl implements PersonService{
 	private PersonDAO dao = new PersonDAOImpl();

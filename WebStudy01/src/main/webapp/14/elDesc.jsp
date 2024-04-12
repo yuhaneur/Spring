@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.vo.BtsVO"%>
+<%@page import="kr.or.ddit.hr.vo.BtsVO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>

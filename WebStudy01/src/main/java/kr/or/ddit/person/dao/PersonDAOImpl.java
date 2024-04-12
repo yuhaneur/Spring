@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
-import kr.or.ddit.vo.PersonVO;
+import kr.or.ddit.hr.vo.PersonVO;
 
 public class PersonDAOImpl implements PersonDAO {
 	private Properties props;

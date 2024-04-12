@@ -5,7 +5,7 @@ import java.util.List;
 import kr.or.ddit.btss.dao.BtsDAO;
 import kr.or.ddit.btss.dao.InMemoryBtsDAOImpl;
 import kr.or.ddit.exception.PkNotFoundException;
-import kr.or.ddit.vo.BtsVO;
+import kr.or.ddit.hr.vo.BtsVO;
 
 public class BtsServiceImpl implements BtsService {
 	private BtsDAO dao = new InMemoryBtsDAOImpl();

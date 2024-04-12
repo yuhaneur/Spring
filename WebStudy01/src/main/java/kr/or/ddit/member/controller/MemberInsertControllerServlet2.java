@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
-import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.hr.vo.MemberVO;
 
 @WebServlet("/member/memberInsert.do123123")
 public class MemberInsertControllerServlet2 extends HttpServlet{

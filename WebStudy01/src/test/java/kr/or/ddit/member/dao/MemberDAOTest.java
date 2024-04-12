@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import kr.or.ddit.exception.PersistenceException;
-import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.hr.vo.MemberVO;
 
 class MemberDAOTest {
 

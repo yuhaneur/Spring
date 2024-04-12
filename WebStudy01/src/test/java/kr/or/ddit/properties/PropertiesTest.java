@@ -12,7 +12,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import kr.or.ddit.servlet01.DescriptionServlet;
-import kr.or.ddit.vo.PersonVO;
+import kr.or.ddit.hr.vo.PersonVO;
 
 class PropertiesTest {
 	

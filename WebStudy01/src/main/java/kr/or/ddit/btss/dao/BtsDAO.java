@@ -2,7 +2,7 @@ package kr.or.ddit.btss.dao;
 
 import java.util.List;
 
-import kr.or.ddit.vo.BtsVO;
+import kr.or.ddit.hr.vo.BtsVO;
 
 /**
  * Persistence Layer

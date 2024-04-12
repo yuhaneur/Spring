@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import kr.or.ddit.vo.PersonVO;
+import kr.or.ddit.hr.vo.PersonVO;
 
 class PersonDAOImplTest {
 	PersonDAO dao = new PersonDAOImpl();

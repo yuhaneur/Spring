@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.person.service.PersonService;
 import kr.or.ddit.person.service.PersonServiceImpl;
-import kr.or.ddit.vo.PersonVO;
+import kr.or.ddit.hr.vo.PersonVO;
 
 @WebServlet("/people.do")
 public class PersonDetailServlet extends HttpServlet{
 	private PersonService service = new PersonServiceImpl();
-	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("who");

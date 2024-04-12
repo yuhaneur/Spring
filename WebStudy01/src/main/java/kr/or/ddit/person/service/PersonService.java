@@ -2,7 +2,7 @@ package kr.or.ddit.person.service;
 
 import java.util.List;
 
-import kr.or.ddit.vo.PersonVO;
+import kr.or.ddit.hr.vo.PersonVO;
 
 /**
  * Business Logic Layer : 하나의 어플리케이션이 가진 특징적인 로직이 구현되는 객체.

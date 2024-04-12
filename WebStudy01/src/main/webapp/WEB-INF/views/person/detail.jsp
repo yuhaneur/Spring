@@ -1,4 +1,4 @@
-<%@page import="kr.or.ddit.vo.PersonVO"%>
+<%@page import="kr.or.ddit.hr.vo.PersonVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

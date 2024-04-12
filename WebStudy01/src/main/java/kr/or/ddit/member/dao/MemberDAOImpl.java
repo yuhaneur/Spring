@@ -15,7 +15,7 @@ import kr.or.ddit.db.ConnectionFactory_HikariCP;
 import kr.or.ddit.db.ConnectionFactory_JDBC_Ver3;
 import kr.or.ddit.exception.PersistenceException;
 import kr.or.ddit.utils.NamingUtils;
-import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.hr.vo.MemberVO;
 
 public class MemberDAOImpl implements MemberDAO {
 

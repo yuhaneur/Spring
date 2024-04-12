@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.ddit.person.dao.PersonDAOImpl;
 import kr.or.ddit.person.service.PersonService;
 import kr.or.ddit.person.service.PersonServiceImpl;
-import kr.or.ddit.vo.PersonVO;
+import kr.or.ddit.hr.vo.PersonVO;
 
 /**
  * 웹이라는 실행환경에 종속되는 controller layer
