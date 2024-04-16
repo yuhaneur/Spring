@@ -51,4 +51,4 @@
 
 
 </table>
-<script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script> --%>

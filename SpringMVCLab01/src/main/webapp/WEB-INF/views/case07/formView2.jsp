@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<h4>입력 양식 구성</h4>
-
-<form:form modelAttribute="addr">
+<pre>
+검증 대상 : ${adrs}
+검증 결과 : ${requestScope["org.springframework.validation.BindingResult.adrs"] }
+</pre>
+<form:form modelAttribute="adrs">
 	<form:input path="adrsNo" placeholder="주소번호"  />
 	<form:errors path="adrsNo" />
 	<form:input path="memId" placeholder="회원아이디"  />

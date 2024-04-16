@@ -10,9 +10,7 @@
 <body>
 <div id="detail"></div>
 <c:set value="${pageContext.request.contextPath }" var="cPath" scope="application" />
-<form name="personForm" action="/people.do" method="post">
-	<input type="text" name="who" />
-</form>
+
 
 <table>
 	<thead>
@@ -25,7 +23,7 @@
 		<c:forEach items="${people }" var="once"> <!-- 임시블록변수 :  --> 
 		<tr>
 			<td>${once.id }</td>
-			<td><a href="javascript:;" onclick="clickHandler(event);" data-member-id="${once.id }">${once.name }</a></td>
+			<td><a href="<c:url value='/people/${once.id }'/>">${once.name }</a></td>
 		</tr>
 		</c:forEach>
 	</tbody>

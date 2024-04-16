@@ -21,9 +21,8 @@ public class ProdServiceImpl implements ProdService {
 	}
 
 	@Override
-	public ProdVO retrieveProd(String prodId) throws PkNotFoundException {
+	public ProdVO retrieveProd(String prodId) {
 		ProdVO prod = dao.selectProd(prodId);
-		if(prod==null) throw new PkNotFoundException(500);
 		return prod;
 	}
 
