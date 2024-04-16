@@ -6,6 +6,7 @@ import kr.or.ddit.hr.vo.CountriesVO;
 import kr.or.ddit.hr.vo.DepartmentsVO;
 import kr.or.ddit.hr.vo.EmployeesVO;
 import kr.or.ddit.hr.vo.RegionsVO;
+import kr.or.ddit.hr.vo.RetrieVO;
 
 public interface HrDao {
 	/**
@@ -24,7 +25,7 @@ public interface HrDao {
 	public EmployeesVO detailEmployee();
 	
 	/**
-	 * 선택한 지원 담당업무 or 소속 부서 변경
+	 * 선택한 직원 담당업무 or 소속 부서 변경
 	 */
 	public int updateEmployee();
 	
@@ -33,7 +34,8 @@ public interface HrDao {
 	 */
 	public int updateRetire();
 	
-//	public 
-//	
-//	public List<E>
+	/**
+	 * 퇴사자 리스트
+	 */
+	public List<RetrieVO> retireList();
 }
