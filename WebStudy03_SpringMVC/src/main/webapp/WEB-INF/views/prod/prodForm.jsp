@@ -4,7 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<form:form modelAttribute="${ProdInsertController.MODELNAME }" method="post" enctype="application/x-www-form-urlencoded">
+<form:form modelAttribute="${ProdInsertController.MODELNAME }" method="post" 
+enctype="multipart/form-data">
 	<table class="table table-bordered">
 		<tr>
 			<th>상품명</th>
@@ -65,8 +66,8 @@
 		</tr>
 		<tr>
 			<th>이미지</th>
-			<td><form:input type="text" path="prodImg" 
-					class="form-control" />
+			<td>
+				<input type="file" name="prodImage"/>
 				<form:errors path="prodImg" cssClass="text-danger" element="span" /></td>
 		</tr>
 		<tr>
