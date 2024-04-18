@@ -46,7 +46,7 @@ public class ProdUpdateController {
 			switch (result) {
 			case FAIL:
 				model.addAttribute("message", "서버 오류, 잠시 뒤 다시 등록하세요");
-				viewName = "prod/Form";
+				viewName = "prod/prodUpdate";
 				break;
 			default:
 				viewName = "redirect:/prod/prodDetail.do?what="+prod.getProdId(); 
@@ -54,7 +54,7 @@ public class ProdUpdateController {
 			}
 			
 		}else {
-			viewName = "prod/prodForm";
+			viewName = "prod/prodUpdate";
 		}
 		return viewName;
 	}

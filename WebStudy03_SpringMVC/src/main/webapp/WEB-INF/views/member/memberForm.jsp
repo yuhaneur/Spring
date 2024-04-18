@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 
-<form:form modelAttribute="${MemberInsertControllerServlet.MODELNAME }" method="post" enctype="application/x-www-form-urlencoded">
+<form:form modelAttribute="${MemberInsertControllerServlet.MODELNAME }" method="post" enctype="multipart/form-data">
 	<table class="table table-bordered">
 		<tr>
 			<th>회원번호</th>
@@ -18,6 +18,12 @@
 			<td><form:input type="text" path="memPass" required="true"
 					class="form-control" />
 				<form:errors path="memPass" cssClass="text-danger" element="span" /></td>
+		</tr>
+		<tr>
+			<th>프로필 이미지</th>
+			<td>
+				<input type="file" name="memImage"/>
+			</td>
 		</tr>
 		<tr>
 			<th>회원명</th>

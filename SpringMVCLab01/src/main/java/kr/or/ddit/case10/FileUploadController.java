@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
@@ -135,7 +136,9 @@ public class FileUploadController {
 	public String uploadProcess1(
 			@RequestParam String uploader
 			,@RequestParam int count
-			,MultipartHttpServletRequest req) throws IOException {
+			,MultipartHttpServletRequest req
+			,HttpServletRequest origin) throws IOException {
+		
 		log.info("uploader : {}",uploader);
 		log.info("count : {}",count);
 		

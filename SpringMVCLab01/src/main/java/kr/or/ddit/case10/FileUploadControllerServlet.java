@@ -34,6 +34,7 @@ public class FileUploadControllerServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		String uploader = req.getParameter("uploader");
 //		String count = req.getParameter("count");
+		
 		FileItemFactory itemFactory = new DefaultFileItemFactory(10*1024,new File("D:/01.temp") );
 		ServletFileUpload handler = new ServletFileUpload(itemFactory);
 		try {

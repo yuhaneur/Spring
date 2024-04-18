@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.or.ddit.enumpkg.ServiceResult;
 import kr.or.ddit.exception.PkNotFoundException;
+import kr.or.ddit.paging.PaginationInfo;
 import kr.or.ddit.vo.MemberVO;
 
 /**
@@ -24,7 +25,7 @@ public interface MemberService {
 	 * 회원 목록 조회
 	 * @return
 	 */
-	public List<MemberVO> retrieveMemberList();
+	public List<MemberVO> retrieveMemberList(PaginationInfo paging);
 	
 	
 	/**

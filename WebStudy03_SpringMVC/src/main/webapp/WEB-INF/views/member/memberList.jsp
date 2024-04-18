@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <style type="text/css">
 	tr[data-mem-id]{
 		cursor: pointer;
@@ -125,9 +126,48 @@
 		</c:if>
 		<c:remove var="lastCreated" scope="session"/>		
 	</tbody>
-	
-
-
-
+	<tfoot>
+		<tr>
+			<td colspan="6">
+			${pagingHTML }
+<!-- 				이름, 지역, 전체 , 세가지 검색 조건으로 검색 및 페이징 처리. -->
+<!-- 				recordCount = 3, pageSize =2 -->
+				<div id="searchUI">
+					<form:select path="paging.simpleCondition.searchType">
+						<form:option value="" label="전체"/>
+						<form:option value="name" label="이름"/>
+						<form:option value="address" label="지역"/>
+					</form:select>
+					<form:input  path="paging.simpleCondition.searchWord"/>
+					<button id="searchBtn">검색</button>
+				</div>
+			</td>
+		</tr>
+	</tfoot>
 </table>
+
+<form:form modelAttribute="paging" method="get" action="${pageContext.request.contextPath }/member/memberList.do"  id="searchForm">
+	<form:input path="simpleCondition.searchType"/>
+	<form:input path="simpleCondition.searchWord"/>
+	<input type="text" name="currentPage" value="1">
+</form:form>
+<script>
+
+	function ${pagingFunction}(page){
+		searchForm.currentPage.value = page;
+		$searchForm.submit();
+	}
+	const $searchForm = $("#searchForm");
+
+	$("#searchBtn").on("click", function(event){
+		let $searchUI = $(this).parents("#searchUI");
+		$searchUI.find(":input[name]").each(function(idx,ipt){
+			let name = this.name;
+			let value = $(this).val();
+			searchForm.searchType =value;
+			searchForm[name].value = value;
+		});
+		$searchForm.submit();
+	});
+</script>
 <script src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>

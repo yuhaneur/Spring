@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.or.ddit.AbstractRootContextTest;
 import kr.or.ddit.enumpkg.ServiceResult;
+import kr.or.ddit.paging.PaginationInfo;
 import kr.or.ddit.vo.ProdVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,8 +54,13 @@ class ProdDAOTest extends AbstractRootContextTest{
 
 	@Test
 	void testSelectProdList() {
-		List<ProdVO> prodList = dao.selectProdList();
+		PaginationInfo paging = new PaginationInfo();
+		paging.setTotalRecord(dao.selectTotalRecord(paging));
+		log.info("{} ",paging);
+		paging.setCurrentPage(4);
+		List<ProdVO> prodList = dao.selectProdList(paging);
 		log.info("list : {}", prodList);
+		log.info("{} ",paging);
 	}
 
 	@Test

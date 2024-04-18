@@ -7,9 +7,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.ddit.member.service.MemberService;
+import kr.or.ddit.paging.DefaultPaginationRenderer;
+import kr.or.ddit.paging.PaginationInfo;
+import kr.or.ddit.paging.PaginationRenderer;
+import kr.or.ddit.paging.SimpleCondition;
 import kr.or.ddit.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,24 +38,22 @@ public class MemberListController  {
 //	private static final Logger logger2 = LoggerFactory.getLogger("jdbc.resultsettable");
 	@Autowired
 	private MemberService service ;
-	@GetMapping("/member/memberList.do")
-	public String memberList(HttpServletRequest req, HttpServletResponse resp)  {
-		log.info("컨트롤러 동작");
-//		System.out.println("컨트롤러 동작");
-		List<MemberVO> mlist = service.retrieveMemberList();
-//		System.out.printf("%s\n", mlist);
-		log.info("조회된 모델: {}", mlist); //{} : 메세지 argument
-		//scope
-		req.setAttribute("mlist",mlist);
-		//view
-		String accept = req.getHeader("accept");
-		String viewName="";
-		if(accept.contains("json")) { //list객체를 json으로 마샬링 하는 작업
-			return "/jsonView.do";
-		}else {
-			return "member/memberList";
-		}
-		//flow control
-	}
+	@RequestMapping("/member/memberList.do")
+	   public String ListProcess(Model model
+			 ,@ModelAttribute("paging") PaginationInfo paging
+//			 ,SimpleCondition simpleCondition
+	         ) {
+//	      paging.setSimpleCondition(simpleCondition);
+	      List<MemberVO> mlist = service.retrieveMemberList(paging);
+	      // scope
+	      model.addAttribute("mlist", mlist);
+	      PaginationRenderer render = new DefaultPaginationRenderer();
+	      model.addAttribute("pagingFunction", "paging");
+	      String pagingHTML =  render.renderPagination(paging, "paging");
+	      model.addAttribute("pagingHTML", pagingHTML);
+	      // view
+	      return "member/memberList";
+	   } 
+
 
 }
