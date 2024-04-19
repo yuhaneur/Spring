@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import lombok.Data;
 
 @Data
@@ -14,7 +17,6 @@ public class BankInfoVO {
 	private String bankName;
 	@NotBlank
 	private String bankUserName;
-//	private LocalDate bankDate;
-	@NotBlank
-	private String bankDate;
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate bankDate;
 }

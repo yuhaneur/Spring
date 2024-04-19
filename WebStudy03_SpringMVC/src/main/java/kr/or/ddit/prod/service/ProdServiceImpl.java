@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.enumpkg.ServiceResult;
@@ -35,6 +36,9 @@ public class ProdServiceImpl implements ProdService {
 	}
 	
 	private void processImage(ProdVO prod) {
+		if(1==1) {
+			throw new RuntimeException("강제 발생 예외");
+		}
 		MultipartFile uploadFile = prod.getProdImage();
 		String saveName = prod.getProdImg();
 		if(uploadFile==null) return;
@@ -68,7 +72,6 @@ public class ProdServiceImpl implements ProdService {
 			return ServiceResult.FAIL;
 		}
 	}
-
 
 	@Override
 	public ServiceResult modifyProd(ProdVO prod) {

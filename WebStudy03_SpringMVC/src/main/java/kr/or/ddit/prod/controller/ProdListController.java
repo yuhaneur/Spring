@@ -2,6 +2,7 @@ package kr.or.ddit.prod.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.annotation.WebServlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,19 @@ import kr.or.ddit.paging.PaginationRenderer;
 import kr.or.ddit.paging.SimpleCondition;
 import kr.or.ddit.prod.service.ProdService;
 import kr.or.ddit.vo.ProdVO;
+import lombok.extern.slf4j.Slf4j;
 
 
+@Slf4j
 @Controller
 public class ProdListController{
 	@Autowired
 	private ProdService service;
+	
+	@PostConstruct
+	public void init() {
+		log.info("주입된 service : {}",service.getClass().getName());
+	}
 	
 	@RequestMapping("/prod/prodList.do")
 	public String prodList(Model model,@RequestParam(required = false , defaultValue = "1") int currentPage

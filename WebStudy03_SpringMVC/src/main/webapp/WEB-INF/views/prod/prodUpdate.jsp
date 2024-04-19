@@ -170,5 +170,3 @@
 
 	</table>
 </form:form>
-<script
-	src="${pageContext.request.contextPath}/resources/js/member/memberList.js"></script>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.alba.dao.AlbaDAO">
+	<resultMap type="AlbaModel" id="albaMap" autoMapping="true">
+		<id property="alId" column="AL_ID"/>
+		<collection property="mylic" ofType="MyLicModel" autoMapping="true">
+			<association property="licence" javaType="LicenceModel" autoMapping="true"/>
+		</collection>
+	</resultMap>
+	<select id="selectAlbaList">
+		WITH ALBAGRADE AS(
+			SELECT AL_ID, AL_NAME, AL_ADDR1, AL_ADDR2, AL_GEN, AL_CAREER, B.GR_CODE, B.GR_NAME
+			FROM ALBA A  INNER JOIN GRADE B ON (A.GR_CODE= B.GR_CODE)
+			),LICENCELIST AS(
+			    SELECT C.LIC_CODE,C.LIC_NAME,D.LIC_DATE,D.LIC_IMG,D.AL_ID
+			    FROM LICENCE C INNER JOIN MYLIC D ON (C.LIC_CODE=D.LIC_CODE)
+			)
+			SELECT E.*, F.*
+			FROM ALBAGRADE E LEFT JOIN LICENCELIST F ON(E.AL_ID=F.AL_ID)
+	</select>
+</mapper>

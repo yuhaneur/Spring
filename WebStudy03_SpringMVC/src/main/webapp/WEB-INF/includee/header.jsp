@@ -234,13 +234,7 @@
 	
 	          </ul><!-- End Profile Dropdown Items -->
 	        </li><!-- End Profile Nav -->
-				
-		</c:if>
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header>
-<form id="logoutForm" method="post"></form>
+				<form id="logoutForm" method="post"></form>
 <script type="text/javascript">
 	document.querySelector('a[data-target-form]').addEventListener("click",function(e){
 //1.클릭이벤트 중단
@@ -256,3 +250,8 @@
 		}
 	});
 </script>
+		</c:if>
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header>
