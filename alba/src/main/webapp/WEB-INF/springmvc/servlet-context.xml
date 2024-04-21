@@ -15,9 +15,9 @@
 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 	<bean id="xmlView" class="org.springframework.web.servlet.view.xml.MappingJackson2XmlView"/>
 	
-	<mvc:tiles-configurer>
-		<mvc:definitions location="/WEB-INF/tiles/*.xml"/>
-	</mvc:tiles-configurer>
+<!-- 	<mvc:tiles-configurer> -->
+<!-- 		<mvc:definitions location="/WEB-INF/tiles/*.xml"/> -->
+<!-- 	</mvc:tiles-configurer> -->
 	
 	<mvc:view-resolvers>
 		<mvc:content-negotiation>
@@ -27,7 +27,7 @@
 			</mvc:default-views>
 		</mvc:content-negotiation>
 		<mvc:bean-name/>
-		<mvc:tiles />
+<!-- 		<mvc:tiles /> -->
 		<mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp"/>
 	</mvc:view-resolvers>
 	

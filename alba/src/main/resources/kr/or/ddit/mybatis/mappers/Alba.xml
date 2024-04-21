@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ddit.alba.dao.AlbaDAO">
+
 	<resultMap type="AlbaModel" id="albaMap" autoMapping="true">
 		<id property="alId" column="AL_ID"/>
-		<collection property="mylic" ofType="MyLicModel" autoMapping="true">
+		<association property="grade" javaType="GradeModel" autoMapping="true"/>
+		<collection property="mylicList" ofType="MyLicModel" autoMapping="true">
 			<association property="licence" javaType="LicenceModel" autoMapping="true"/>
 		</collection>
 	</resultMap>
-	<select id="selectAlbaList">
+		<sql id="searchFrag">
+			<where >
+			 <if test="@org.apache.commons.lang3.StringUtils@isNotBlank(simpleCondition.searchWord)">
+				  <choose>
+				  	<when test="simpleCondition.searchType eq 'name'">
+				  		INSTR(AL_NAME,#{simpleCondition.searchWord}) > 0
+				  	</when>
+				  	<when test="simpleCondition.searchType eq 'address'">
+				  		INSTR(AL_ADD1,#{simpleCondition.searchWord}) > 0
+				  	</when>
+				  	<otherwise>
+				  		INSTR(AL_NAME,#{simpleCondition.searchWord}) > 0
+				  		OR INSTR(AL_ADD1,#{simpleCondition.searchWord}) > 0
+				  	</otherwise>
+				  </choose>
+			  </if>
+		  </where>
+		</sql>
+	<select id="selectTotalRecord" parameterType="kr.or.ddit.paging.PaginationInfo">
+		SELECT COUNT(*)
+		FROM ALBA
+		<include refid="searchFrag" />
+	</select>
+	
+	<select id="selectAlbaList" resultMap="albaMap" parameterType="kr.or.ddit.paging.PaginationInfo">
+		WITH ALBAGRADE AS (
+		    SELECT AL_ID, AL_NAME, AL_ADDR1, AL_ADDR2, AL_GEN, AL_CAREER, B.GR_CODE, B.GR_NAME,
+		           ROW_NUMBER() OVER (ORDER BY AL_ID) AS RN_ALBAGRADE
+		    FROM ALBA A  
+		    INNER JOIN GRADE B ON (A.GR_CODE= B.GR_CODE)
+		),
+		LICENCELIST AS (
+		    SELECT C.LIC_CODE, C.LIC_NAME, D.LIC_DATE, D.LIC_IMG, D.AL_ID,
+		           ROW_NUMBER() OVER (ORDER BY C.LIC_CODE) AS RN_LICENCELIST
+		    FROM LICENCE C 
+		    INNER JOIN MYLIC D ON (C.LIC_CODE=D.LIC_CODE)
+		)
+		SELECT E.*, F.*
+		FROM ALBAGRADE E 
+		LEFT JOIN LICENCELIST F ON (E.AL_ID=F.AL_ID)
+		WHERE E.RN_ALBAGRADE BETWEEN #{firstRecord} AND #{lastRecord}
+	</select>
+		
+	<select id="selectAlba" parameterType="String" resultMap="albaMap">
 		WITH ALBAGRADE AS(
-			SELECT AL_ID, AL_NAME, AL_ADDR1, AL_ADDR2, AL_GEN, AL_CAREER, B.GR_CODE, B.GR_NAME
+			SELECT AL_ID, AL_NAME, AL_ADDR1, AL_ADDR2, AL_GEN, AL_CAREER,AL_IMG, B.GR_CODE, B.GR_NAME
 			FROM ALBA A  INNER JOIN GRADE B ON (A.GR_CODE= B.GR_CODE)
 			),LICENCELIST AS(
 			    SELECT C.LIC_CODE,C.LIC_NAME,D.LIC_DATE,D.LIC_IMG,D.AL_ID
@@ -17,5 +62,26 @@
 			)
 			SELECT E.*, F.*
 			FROM ALBAGRADE E LEFT JOIN LICENCELIST F ON(E.AL_ID=F.AL_ID)
+            WHERE E.AL_ID = #{alId}
 	</select>
+	
+	<insert id="insertAlba" parameterType="AlbaModel" >
+		<selectKey keyProperty="alId" resultType="string" order="BEFORE">
+			SELECT 'A'||LPAD(NVL(TO_NUMBER(MAX(SUBSTR(AL_ID, 2))),0)+1,7,0)
+			FROM ALBA
+		</selectKey>
+		INSERT INTO ALBA(
+			 AL_ID, AL_NAME, AL_AGE
+			,AL_ZIP, AL_ADDR1, AL_ADDR2
+			,AL_HP, GR_CODE, AL_GEN
+			,AL_MAIL, AL_CAREER, AL_SPEC
+			, AL_DESC, AL_IMG
+			)VALUES(
+				#{alId,jdbcType=CHAR},#{alName},#{alAge}
+				,#{alZip},#{alAddr1},#{alAddr2}
+				,#{alHp},#{grCode},#{alGen}
+				,#{alMail},#{alCareer,jdbcType=VARCHAR},#{alSpec,jdbcType=VARCHAR}
+				,#{alDesc,jdbcType=VARCHAR},#{alImg,jdbcType=VARCHAR}
+			)
+	</insert>
 </mapper>

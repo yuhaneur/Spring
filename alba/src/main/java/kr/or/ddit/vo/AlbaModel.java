@@ -1,8 +1,8 @@
 package kr.or.ddit.vo;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,7 +18,7 @@ import lombok.ToString;
 @EqualsAndHashCode(of = "alId")
 @ToString
 public class AlbaModel implements Serializable{
-	@NotBlank
+	private int rnum;
 	private String alId;
 	@NotBlank
 	private String alName;
@@ -44,9 +44,16 @@ public class AlbaModel implements Serializable{
 	private String alSpec;
 	private String alDesc;
 	private String alImg;
+	private MultipartFile alImage;
+	public void setAlImage(MultipartFile alImage) {
+		if(alImage.isEmpty()) return;
+		this.alImage = alImage;
+		this.alImg = UUID.randomUUID().toString();
+	}
+	
 	
 	private GradeModel grade;
-	private List<MyLicModel> mylic;
+	private List<MyLicModel> mylicList;
 	
 	
 }
