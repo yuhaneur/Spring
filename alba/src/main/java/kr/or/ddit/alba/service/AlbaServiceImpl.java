@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -26,9 +28,10 @@ public class AlbaServiceImpl implements AlbaService {
 	
 	
 	@Value("/resources/profiles/")
-	private static Resource alImages;
+	private Resource alImages;
 	
-	public static void init() throws IOException {
+	@PostConstruct
+	public void init() throws IOException {
 		if(!alImages.exists()) {
 			alImages.getFile().mkdirs();
 		}
